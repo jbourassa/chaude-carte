@@ -18,32 +18,13 @@
     </div>
     <div id="dragger"></div>
     <script>
-      window.baseMapHeatMapPoints = [
-        {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
-        new google.maps.LatLng(46.802, -71.245),
-        {location: new google.maps.LatLng(46.802, -71.243), weight: 2},
-        {location: new google.maps.LatLng(46.802, -71.241), weight: 3},
-        {location: new google.maps.LatLng(46.802, -71.239), weight: 2},
-        new google.maps.LatLng(46.802, -71.237),
-        {location: new google.maps.LatLng(46.802, -71.235), weight: 0.5},
-        {location: new google.maps.LatLng(46.805, -71.247), weight: 3},
-        {location: new google.maps.LatLng(46.805, -71.245), weight: 2},
-        new google.maps.LatLng(46.805, -71.243),
-        {location: new google.maps.LatLng(46.805, -71.241), weight: 0.5},
-        new google.maps.LatLng(46.805, -71.239),
-        {location: new google.maps.LatLng(46.805, -71.237), weight: 2},
-        {location: new google.maps.LatLng(46.805, -71.235), weight: 3}
-      ]
-      window.topMapHeatMapPoints = [
-        {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
-        new google.maps.LatLng(46.802, -71.245),
-        {location: new google.maps.LatLng(46.802, -71.243), weight: 2},
-        {location: new google.maps.LatLng(46.802, -71.241), weight: 3},
-        {location: new google.maps.LatLng(46.802, -71.239), weight: 2},
-        new google.maps.LatLng(46.802, -71.237),
-        {location: new google.maps.LatLng(46.802, -71.235), weight: 0.5},
-        {location: new google.maps.LatLng(46.805, -71.247), weight: 3}
-      ]
+      window.baseMapHeatMapPoints = <%= prices %>.map(function(point) {
+        return { location: new google.maps.LatLng(point.latlon[0], point.latlon[1]),
+                 weight: point.price };
+      });
+      window.topMapHeatMapPoints = <%= trees %>.map(function(point) {
+        return { location: new google.maps.LatLng(point[1], point[0]) };
+      });
     </script>
     <%= js  :bodyjs %>
   </body>

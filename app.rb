@@ -35,7 +35,10 @@ class App < Sinatra::Base
 
   # Home
   get '/' do
-    erb :index
+    erb :index, locals: {
+      prices: Property.all.to_json,
+      trees: IO.read(File.join(settings.root, 'data/trees.json'))
+    }
   end
 
   get '/quebec.json' do
