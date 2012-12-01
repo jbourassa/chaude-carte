@@ -19,6 +19,7 @@ def call(call, params={})
   as_hash['response']['listingList']['listing']
 end
 
+start = Time.now
 
 results = call('getlistingsbycoordinates',
   maxresults: ,
@@ -27,6 +28,7 @@ results = call('getlistingsbycoordinates',
   lon: '-71.243099'
 )
 
+puts "Scraped #{results.length} records."
 properties = results.map do |result|
   Property.create(
     code: result['code'],
@@ -37,3 +39,5 @@ properties = results.map do |result|
     latlon: [result['lat'], result['lon']]
   )
 end
+puts "Saved. Properties count: #{Property.count}"
+puts "Took #{Time.now - start}s"
