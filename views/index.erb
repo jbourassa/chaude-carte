@@ -9,11 +9,14 @@
     <%= css  :application %>
   </head>
   <body>
-    <div id="dragger"></div>
+    <header>
+      <h1 class="logo">Chaude carte - visualisation urbaine</h1>
+    </header>
     <div class="map-canvas" id="base_canvas"></div>
     <div class="map-wrap">
       <div class="map-canvas" id="top_canvas"></div>
     </div>
+    <div id="dragger"></div>
     <script>
       window.baseMapHeatMapPoints = [
         {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
