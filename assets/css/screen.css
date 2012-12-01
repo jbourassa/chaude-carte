@@ -15,29 +15,30 @@ html, body {
 
 body {
   font-family: OpenSans, Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2;
 }
 
 header {
-  background: #fff url(/images/header_pattern.png) 0 0 repeat-x;
-  border-bottom: 1px solid #ffd929;
-  box-shadow: inset 0 -1px #ffed9b, 0 1px #9e8929;
-  height: 90px;
+  background: #f9f9f9; /* Old browsers */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  height: 100px;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 5000;
+  opacity: 0.92;
 }
 
 .logo {
   background: url(/images/logo.png) 0 0 no-repeat;
   height: 65px;
+  margin-top: -32px;
   overflow: hidden;
   text-indent: -9999em;
   position: absolute;
   left: 50%;
-  top: 15px;
+  top: 50%;
   margin-left: -127px;
   width: 254px;
 }
@@ -54,26 +55,23 @@ header {
 }
 
 .map-canvas {
-  -webkit-box-sizing: border-box;
-      -ms-box-sizing: border-box;
-          box-sizing: border-box;
-  border-top: 90px solid #fff;
   height: 100%;
   float: left;
-  padding-top: 90px;
   width: 100%;
 }
+
 #dragger {
   background: url(/images/dragger_pattern.png);
   border: 1px solid #383838;
   border-width: 0 1px;
   cursor: ew-resize;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
-  height: 100%;
+
   margin-left: -8px;
   opacity: 0.8;
   position: absolute;
-  top: 0;
+  bottom: 0;
+  top: 100px;
   left: 50%;
   width: 16px;
   z-index: 1000;
@@ -85,7 +83,7 @@ header {
   margin: 27px 0 0 -3px;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
   width: 6px;
 }
 .map-wrap {
@@ -102,7 +100,7 @@ header {
 
 .control {
   position: absolute;
-  left: 25%;
+  left: 19%;
   bottom: 15px;
   margin-left: -150px;
   text-align: center;
@@ -117,10 +115,6 @@ header {
   text-align: right;
 }
 
-select {
-  border: 1px solid #ebce1c;
-}
-
 .control.right {
   left: 75%;
 }
@@ -128,7 +122,7 @@ select {
 .logo-duproprio {
   float: right;
   margin-left: 10px;
-  margin-top: 6px;
+  margin-top: 3px;
 }
 
 @media (max-width: 460px) {
