@@ -15,13 +15,31 @@ class Map
       center:    @center
       zoom:      14
       mapTypeId: google.maps.MapTypeId.ROADMAP
+      panControl: false
+      zoomControl: true
+      mapTypeControl: false
+      scaleControl: false
+      streetViewControl: false
+      overviewMapControl: false
     )
 
-    mapStyles = [
+    mapStyles = [{
       featureType: "all"
       elementType: "all"
       stylers: [{saturation: -100 }]
-    ]
+    },{
+      featureType: "all"
+      elementType: "labels"
+      stylers: [
+        visibility: "off"
+      ]
+    },{
+      featureType: "administrative.neighborhood"
+      elementType: "labels.text"
+      stylers: [
+        visibility: "on"
+      ]
+    }]
     styledMap = new google.maps.StyledMapType(mapStyles, {name: "Styled Map"})
 
     @map.mapTypes.set("styled", styledMap)
