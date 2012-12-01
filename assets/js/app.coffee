@@ -8,8 +8,10 @@ class App
   initEvents: ->
     $('#dragger').on 'mousedown',    this.draggerDown
     $('#dragger').on 'mouseup',      this.draggerUp
-    $(window).bind 'top_canvas_center_changed',  this.syncBaseMap
-    $(window).bind 'base_canvas_center_changed', this.syncTopMap
+    $(window).bind 'top_canvas_center_changed',  this.syncCenterBaseMap
+    $(window).bind 'base_canvas_center_changed', this.syncCenterTopMap
+    $(window).bind 'top_canvas_zoom_changed',    this.syncZoomBaseMap
+    $(window).bind 'base_canvas_zoom_changed',   this.syncZoomTopMap
 
   draggerDown: =>
     $(window).on('mousemove', this.draggerMove)
@@ -33,10 +35,20 @@ class App
       .css('margin-left', "#{canvasMarginLeft}%")
       .css('width', "#{canvasWidth}%")
 
-  syncBaseMap: (e,newCenter)=>
+  syncCenterBaseMap: (e,newCenter)=>
     @baseMap.reCenter newCenter
 
-  syncTopMap: (e,newCenter)=>
+  syncCenterTopMap: (e,newCenter)=>
     @topMap.reCenter newCenter
+
+  syncZoomBaseMap: (e,newCenter, newZoom)=>
+    @topMap.zoomOff()
+    @baseMap.reZoom newCenter, newZoom
+    @topMap.zoomOn()
+
+  syncZoomTopMap: (e,newCenter, newZoom)=>
+    @baseMap.zoomOff()
+    @topMap.reZoom newCenter, newZoom
+    @baseMap.zoomOn()
 
 this.app = new App
