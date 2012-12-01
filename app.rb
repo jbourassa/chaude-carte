@@ -3,6 +3,8 @@ require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'erb'
 
+Bundler.require(:default)
+
 class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :run, false

@@ -1,9 +1,4 @@
 #! /usr/bin/env ruby
-require "rubygems"
-require "bundler/setup"
-require "active_support/all"
-Bundler.require(:default, :development)
-
 require_relative "app.rb"
 require_relative "property.rb"
 
@@ -22,7 +17,7 @@ end
 start = Time.now
 
 results = call('getlistingsbycoordinates',
-  maxresults: ,
+  maxresults: 10,
   km: 5,
   lat: '46.802997',
   lon: '-71.243099'
