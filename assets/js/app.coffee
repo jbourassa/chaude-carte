@@ -12,6 +12,7 @@ class App
     $(window).bind 'base_canvas_center_changed', this.syncCenterTopMap
     $(window).bind 'top_canvas_zoom_changed',    this.syncZoomBaseMap
     $(window).bind 'base_canvas_zoom_changed',   this.syncZoomTopMap
+    $("#top_map_dataset_select").change this.changeDataSet
 
   draggerDown: =>
     $(window).on('mousemove', this.draggerMove)
@@ -50,5 +51,8 @@ class App
     @baseMap.zoomOff()
     @topMap.reZoom newCenter, newZoom
     @baseMap.zoomOn()
+
+  changeDataSet: (e)=>
+    @topMap.initDataSet($(e.currentTarget).val())
 
 this.app = new App
