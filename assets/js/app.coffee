@@ -1,13 +1,15 @@
 class App
   constructor:->
-    @baseMap = Map '#base_canvas', window.baseMapHeatMapPoints
-    @topMap  = Map '#top_canvas',  window.topMapHeatMapPoints
+    @baseMap = new Map 'base_canvas', window.baseMapHeatMapPoints
+    @topMap  = new Map 'top_canvas',  window.topMapHeatMapPoints
     @$dragger  = $('#dragger')
     this.initEvents()
 
   initEvents: ->
-    $('#dragger').on('mousedown', this.draggerDown)
-    $('#dragger').on('mouseup',   this.draggerUp)
+    $('#dragger').on 'mousedown',    this.draggerDown
+    $('#dragger').on 'mouseup',      this.draggerUp
+    $(window).bind 'top_canvas_center_changed',  this.syncBaseMap
+    $(window).bind 'base_canvas_center_changed', this.syncTopMap
 
   draggerDown: =>
     $(window).on('mousemove', this.draggerMove)
@@ -30,5 +32,11 @@ class App
     $('.map-wrap .map-canvas')
       .css('margin-left', "#{canvasMarginLeft}%")
       .css('width', "#{canvasWidth}%")
+
+  syncBaseMap: (e,newCenter)=>
+    @baseMap.reCenter newCenter
+
+  syncTopMap: (e,newCenter)=>
+    @topMap.reCenter newCenter
 
 this.app = new App
