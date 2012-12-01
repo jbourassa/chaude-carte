@@ -1,4 +1,3 @@
-<%= js  :app %>
 <!doctype html>
 <html>
   <head>
@@ -6,19 +5,15 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization">
     </script>
-    <style>
-      html, body {
-        height: 100%;
-      }
-      #map_canvas {
-        height: 100%;
-        width: 100%;
-      }
-    </style>
+    <%= js  :app %>
+    <%= css  :application %>
   </head>
   <body>
-    <div id="map_canvas"></div>
-    <script>
+    <div id="dragger"></div>
+    <div class="map-canvas" id="left_canvas"></div>
+    <div class="map-canvas" id="right_canvas"></div>
+
+     <script>
       /* Data points defined as a mixture of WeightedLocation and LatLng objects */
       var heatMapData = [
         {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
@@ -38,9 +33,16 @@
       ];
 
       var quebec = new google.maps.LatLng(46.803283,-71.242796);
+      var quebec_offset = new google.maps.LatLng(46.803283,-71.188596);
 
-      map = new google.maps.Map(document.getElementById('map_canvas'), {
+      map = new google.maps.Map(document.getElementById('left_canvas'), {
         center: quebec,
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      });
+
+      map2 = new google.maps.Map(document.getElementById('right_canvas'), {
+        center: quebec_offset,
         zoom: 14,
         mapTypeId: google.maps.MapTypeId.SATELLITE
       });
@@ -49,7 +51,39 @@
         data: heatMapData
       });
 
+      var heatmap2 = new google.maps.visualization.HeatmapLayer({
+        data: heatMapData
+      });
+
       heatmap.setMap(map);
+      heatmap2.setMap(map2);
+
+      $(document).ready(function(){
+        $('#dragger').on('mousedown', draggerDown)
+        $('#dragger').on('mouseup', draggerUp)
+      })
+
+      function draggerDown(){
+        $(window).on('mousemove', draggerMove);
+      }
+
+      function draggerUp() {
+        $(window).off('mousemove', draggerMove);
+      }
+
+      function draggerMove(e){
+        var $dragger  = $('#dragger'),
+            pos = e.clientX;
+
+        $dragger.css('left', pos + 'px');
+
+        var posRatio = pos * 100 / $(window).width()
+        $('#left_canvas').css('width', posRatio + '%');
+        $('#right_canvas').css('width', 100 - posRatio + '%');
+
+        map2.setCenter(new google.maps.LatLng(46.803283,-71.189596));
+
+      }
       </script>
   </body>
 </html>

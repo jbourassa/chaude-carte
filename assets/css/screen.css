@@ -1,0 +1,30 @@
+html, body {
+  height: 100%;
+}
+.map-canvas,
+#dragger {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.map-canvas {
+  height: 100%;
+  float: left;
+  width: 50%;
+}
+#dragger {
+  background: #ccc;
+  cursor: ew-resize;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
+  height: 100%;
+  margin-left: -5px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  z-index: 1000;
+}

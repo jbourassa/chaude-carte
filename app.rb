@@ -17,6 +17,7 @@ class App < Sinatra::Base
     # The second parameter defines where the compressed version will be served.
     # (Note: that parameter is optional, AssetPack will figure it out.)
     js :app, [
+      '/js/vendors/jquery-1.8.3.min.js',
       '/js/chaude_carte.js',
       '/js/app.js'
     ]
