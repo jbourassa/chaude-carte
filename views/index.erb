@@ -14,68 +14,34 @@
     <div class="map-wrap">
       <div class="map-canvas" id="top_canvas"></div>
     </div>
-
-     <script>
-      $(document).ready(function(){
-        $('#dragger').on('mousedown', draggerDown)
-        $('#dragger').on('mouseup', draggerUp)
-      })
-
-      function draggerDown(){
-        $(window).on('mousemove', draggerMove);
-      }
-
-      function draggerUp() {
-        $(window).off('mousemove', draggerMove);
-      }
-
-      function draggerMove(e){
-        var $dragger  = $('#dragger'),
-            pos = e.clientX;
-
-        $dragger.css('left', pos + 'px');
-
-        var posRatio = pos * 100 / $(window).width()
-
-        var wrapWidth = 100 - posRatio;
-        $('.map-wrap').css('width', wrapWidth + '%');
-        $('.map-wrap .map-canvas').css('width', wrapWidth * 2)
-      }
-      </script>
-      <script>
-        window.baseMapHeatMapPoints = [
-          {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
-          new google.maps.LatLng(46.802, -71.245),
-          {location: new google.maps.LatLng(46.802, -71.243), weight: 2},
-          {location: new google.maps.LatLng(46.802, -71.241), weight: 3},
-          {location: new google.maps.LatLng(46.802, -71.239), weight: 2},
-          new google.maps.LatLng(46.802, -71.237),
-          {location: new google.maps.LatLng(46.802, -71.235), weight: 0.5},
-          {location: new google.maps.LatLng(46.805, -71.247), weight: 3},
-          {location: new google.maps.LatLng(46.805, -71.245), weight: 2},
-          new google.maps.LatLng(46.805, -71.243),
-          {location: new google.maps.LatLng(46.805, -71.241), weight: 0.5},
-          new google.maps.LatLng(46.805, -71.239),
-          {location: new google.maps.LatLng(46.805, -71.237), weight: 2},
-          {location: new google.maps.LatLng(46.805, -71.235), weight: 3}
-        ]
-        window.topMapHeatMapPoints = [
-          {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
-          new google.maps.LatLng(46.802, -71.245),
-          {location: new google.maps.LatLng(46.802, -71.243), weight: 2},
-          {location: new google.maps.LatLng(46.802, -71.241), weight: 3},
-          {location: new google.maps.LatLng(46.802, -71.239), weight: 2},
-          new google.maps.LatLng(46.802, -71.237),
-          {location: new google.maps.LatLng(46.802, -71.235), weight: 0.5},
-          {location: new google.maps.LatLng(46.805, -71.247), weight: 3},
-          {location: new google.maps.LatLng(46.805, -71.245), weight: 2},
-          new google.maps.LatLng(46.805, -71.243),
-          {location: new google.maps.LatLng(46.805, -71.241), weight: 0.5},
-          new google.maps.LatLng(46.805, -71.239),
-          {location: new google.maps.LatLng(46.805, -71.237), weight: 2},
-          {location: new google.maps.LatLng(46.805, -71.235), weight: 3}
-        ]
-      </script>
-      <%= js  :bodyjs %>
+    <script>
+      window.baseMapHeatMapPoints = [
+        {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
+        new google.maps.LatLng(46.802, -71.245),
+        {location: new google.maps.LatLng(46.802, -71.243), weight: 2},
+        {location: new google.maps.LatLng(46.802, -71.241), weight: 3},
+        {location: new google.maps.LatLng(46.802, -71.239), weight: 2},
+        new google.maps.LatLng(46.802, -71.237),
+        {location: new google.maps.LatLng(46.802, -71.235), weight: 0.5},
+        {location: new google.maps.LatLng(46.805, -71.247), weight: 3},
+        {location: new google.maps.LatLng(46.805, -71.245), weight: 2},
+        new google.maps.LatLng(46.805, -71.243),
+        {location: new google.maps.LatLng(46.805, -71.241), weight: 0.5},
+        new google.maps.LatLng(46.805, -71.239),
+        {location: new google.maps.LatLng(46.805, -71.237), weight: 2},
+        {location: new google.maps.LatLng(46.805, -71.235), weight: 3}
+      ]
+      window.topMapHeatMapPoints = [
+        {location: new google.maps.LatLng(46.802, -71.247), weight: 0.5},
+        new google.maps.LatLng(46.802, -71.245),
+        {location: new google.maps.LatLng(46.802, -71.243), weight: 2},
+        {location: new google.maps.LatLng(46.802, -71.241), weight: 3},
+        {location: new google.maps.LatLng(46.802, -71.239), weight: 2},
+        new google.maps.LatLng(46.802, -71.237),
+        {location: new google.maps.LatLng(46.802, -71.235), weight: 0.5},
+        {location: new google.maps.LatLng(46.805, -71.247), weight: 3}
+      ]
+    </script>
+    <%= js  :bodyjs %>
   </body>
 </html>
