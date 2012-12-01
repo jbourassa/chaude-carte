@@ -28,6 +28,7 @@ class App < Sinatra::Base
     ]
 
     css :application, '/css/application.css', [
+      '/css/reset.css',
       '/css/screen.css'
     ]
   }
