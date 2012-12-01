@@ -11,11 +11,22 @@ class Map
     @$el.bind('map_center_changed')
 
   initMap: (heatPoints, center)->
-    @map    = new google.maps.Map(@$el[0],
+    @map = new google.maps.Map(@$el[0],
       center:    @center
       zoom:      14
       mapTypeId: google.maps.MapTypeId.ROADMAP
     )
+
+    mapStyles = [
+      featureType: "all"
+      elementType: "all"
+      stylers: [{saturation: -100 }]
+    ]
+    styledMap = new google.maps.StyledMapType(mapStyles, {name: "Styled Map"})
+
+    @map.mapTypes.set("styled", styledMap)
+    @map.setMapTypeId("styled")
+
     heatmap = new google.maps.visualization.HeatmapLayer(
       data: heatPoints
     )
