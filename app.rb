@@ -1,4 +1,4 @@
-require 'bundler/setup'
+require "bundler/setup"
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sinatra/assetpack'
@@ -10,14 +10,14 @@ class App < Sinatra::Base
 
   assets {
 
-    serve '/js',     from: 'app/js'        # Optional
-    serve '/css',    from: 'app/css'       # Optional
-    serve '/images', from: 'app/images'    # Optional
+    serve '/js',     from: 'assets/js'        # Optional
+    serve '/css',    from: 'assets/css'       # Optional
+    serve '/images', from: 'assets/images'    # Optional
 
     # The second parameter defines where the compressed version will be served.
     # (Note: that parameter is optional, AssetPack will figure it out.)
     js :app, [
-      '/js/vendor/**/*.js',
+      '/js/chaude_carte.js',
       '/js/app.js'
     ]
 
