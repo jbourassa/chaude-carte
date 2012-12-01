@@ -11,7 +11,9 @@
   <body>
     <div id="dragger"></div>
     <div class="map-canvas" id="left_canvas"></div>
-    <div class="map-canvas" id="right_canvas"></div>
+    <div class="map-wrap">
+      <div class="map-canvas" id="right_canvas"></div>
+    </div>
 
      <script>
       /* Data points defined as a mixture of WeightedLocation and LatLng objects */
@@ -33,7 +35,6 @@
       ];
 
       var quebec = new google.maps.LatLng(46.803283,-71.242796);
-      var quebec_offset = new google.maps.LatLng(46.803283,-71.188596);
 
       map = new google.maps.Map(document.getElementById('left_canvas'), {
         center: quebec,
@@ -42,7 +43,7 @@
       });
 
       map2 = new google.maps.Map(document.getElementById('right_canvas'), {
-        center: quebec_offset,
+        center: quebec,
         zoom: 14,
         mapTypeId: google.maps.MapTypeId.SATELLITE
       });
@@ -78,11 +79,9 @@
         $dragger.css('left', pos + 'px');
 
         var posRatio = pos * 100 / $(window).width()
-        $('#left_canvas').css('width', posRatio + '%');
-        $('#right_canvas').css('width', 100 - posRatio + '%');
-
-        map2.setCenter(new google.maps.LatLng(46.803283,-71.189596));
-
+        var wrapWidth = 100 - posRatio;
+        $('.map-wrap').css('width', wrapWidth + '%');
+        $('.map-wrap .map-canvas').css('width', wrapWidth * 2)
       }
       </script>
   </body>
