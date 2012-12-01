@@ -43,7 +43,7 @@ class App < Sinatra::Base
 
   get '/quebec.json' do
     content_type :json
-    Property.all.to_json
+    Property.all.map { |p| { latlon: p.latlon, weight: p.price } }.to_json
   end
 
   get '/trees.json' do
