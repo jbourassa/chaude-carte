@@ -5,7 +5,7 @@ class Map
     @map    = new google.maps.Map(@$el[0],
       center:    @center
       zoom:      14
-      mapTypeId: google.maps.MapTypeId.SATELLITE
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     )
     @heatmap = new google.maps.visualization.HeatmapLayer(
       data: heatPoints
