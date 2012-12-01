@@ -1,5 +1,5 @@
 class Map
-  constructor:(id,heatPoints = [],center = [46.803283,-71.189596])->
+  constructor:(id,heatPoints = [],center = [46.803283,-71.239596])->
     @id     = id
     @$el    = $("#"+id)
     @zoomFlag = true
