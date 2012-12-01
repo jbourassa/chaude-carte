@@ -42,6 +42,11 @@ class App < Sinatra::Base
     Property.all.to_json
   end
 
+  get '/trees.json' do
+    content_type :json
+    send_file File.join(settings.root, 'data/trees.json')
+  end
+
   Mongoid.load!('mongoid.yml')
 
   run! if app_file == $0
