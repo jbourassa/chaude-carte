@@ -1,6 +1,6 @@
 class App
   constructor:->
-    console.log 'App loaded!'
-    ChaudeCarte()
+    baseMap = Map '#base_canvas', window.baseMapHeatMapPoints
+    topMap  = Map '#top_canvas',  window.topMapHeatMapPoints
 
 this.app = App()

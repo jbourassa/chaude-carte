@@ -1,4 +1,4 @@
-require "bundler/setup"
+require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sinatra/assetpack'
@@ -16,9 +16,11 @@ class App < Sinatra::Base
 
     # The second parameter defines where the compressed version will be served.
     # (Note: that parameter is optional, AssetPack will figure it out.)
-    js :app, [
-      '/js/vendors/jquery-1.8.3.min.js',
-      '/js/chaude_carte.js',
+    js :headjs, [
+      '/js/vendors/jquery-1.8.3.min.js'
+    ]
+    js :bodyjs, [
+      '/js/map.js',
       '/js/app.js'
     ]
 
