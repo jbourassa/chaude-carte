@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'erb'
+require_relative 'property'
 
 Bundler.require(:default)
 
@@ -34,6 +35,11 @@ class App < Sinatra::Base
   # Home
   get '/' do
     erb :index
+  end
+
+  get '/quebec.json' do
+    content_type :json
+    Property.all.to_json
   end
 
   Mongoid.load!('mongoid.yml')
