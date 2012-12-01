@@ -4,7 +4,10 @@
 
 ## Setup
 
-    @todo
+    # Load data using the super secret script
+    cp mongoid.yml.tmpl mongoid.yml
+    cp keys.yml.tmpl keys.yml
+    ruby build_index.rb
 
 ## Running
 
@@ -14,4 +17,4 @@
 
 **Scraper**
 
-    @todo
+    ruby scraper.rb
