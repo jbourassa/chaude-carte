@@ -7,7 +7,7 @@ class Property
   field :type,      type: String
   field :price,     type: Integer
   field :date,      type: Date
-  field :location,  type: Array,   default: []
+  field :latlon,    type: Array,   default: []
 
   index({ latlon: "2d" }, { min: -200, max: 200 })
   index({code: 1}, {unique: true})
