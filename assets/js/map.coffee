@@ -1,22 +1,22 @@
 class Map
-  constructor:(id,dataSetName,heatPoints = [],center = [46.803283,-71.239596])->
+  constructor:(id,dataSetName,heatPoints = [], gradient, center = [46.803283,-71.239596])->
     @id     = id
     @$el    = $("#"+id)
     @zoomFlag = true
     @center = new google.maps.LatLng(center[0], center[1])
-    this.initMap(heatPoints,center)
+    this.initMap(heatPoints, center)
     this.initEvents()
-    this.initDataSet(dataSetName)
+    this.initDataSet(dataSetName, gradient)
 
   initEvents: ->
     @$el.bind('map_center_changed')
 
-  initDataSet: (name)->
+  initDataSet: (name, gradient)->
     $.ajax
       type: 'GET'
       url: "/#{name}.json"
       success: (data) =>
-        this.generateHeathMap(data)
+        this.generateHeathMap(data, gradient)
 
   initMap: (heatPoints, center)->
     @map = new google.maps.Map(@$el[0],
@@ -34,6 +34,17 @@ class Map
       streetViewControl: false
       overviewMapControl: false
     )
+
+    @default_gradient = [
+      'rgba(0, 237, 242, 0)',
+      '#00edf2',
+      '#00bfbb',
+      '#00a862',
+      '#009600',
+      '#edcd00',
+      '#e7de00',
+      '#f6af05'
+    ]
 
     mapStyles = [{
       featureType: "all"
@@ -69,15 +80,16 @@ class Map
         $(window).trigger "#{@id}_zoom_changed", [@map.getCenter(), @map.getZoom()]
     )
 
-  generateHeathMap: (data)->
-    console.log 1
+  generateHeathMap: (data, gradient)->
     formated = data.map((point)->
       location: new google.maps.LatLng(point.latlon[0], point.latlon[1])
       weight:   point.weight || 1
     )
 
     heatmap = new google.maps.visualization.HeatmapLayer(
-      data: formated
+      data: formated,
+      opacity: 0.8,
+      gradient: gradient || @default_gradient
     )
     heatmap.setMap(@map)
 

@@ -1,7 +1,14 @@
 class App
   constructor:->
     @baseMap = new Map 'base_canvas', 'quebec', window.baseMapHeatMapPoints
-    @topMap  = new Map 'top_canvas', 'trees',  window.topMapHeatMapPoints
+    @topMap  = new Map 'top_canvas', 'trees',  window.topMapHeatMapPoints, [
+      'rgba(0, 125, 33, 0)',
+      '#007d21',
+      '#008f28',
+      #'#009e2e',
+      #'#00b937',
+      '#00f91e'
+    ]
     @$dragger  = $('#dragger')
     this.initEvents()
 
