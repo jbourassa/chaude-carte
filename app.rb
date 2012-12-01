@@ -1,11 +1,11 @@
 require 'bundler/setup'
-require 'sinatra'
-require 'sinatra/reloader' if development?
+require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'erb'
 
 class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
+  set :run, false
   register Sinatra::AssetPack
 
   assets {
@@ -33,6 +33,8 @@ class App < Sinatra::Base
   get '/' do
     erb :index
   end
+
+  Mongoid.load!('mongoid.yml')
 
   run! if app_file == $0
 end
