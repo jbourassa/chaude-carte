@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'erb'
+require 'json'
 require_relative 'property'
 
 Bundler.require(:default)
@@ -48,7 +49,10 @@ class App < Sinatra::Base
 
   get '/trees.json' do
     content_type :json
-    send_file File.join(settings.root, 'data/trees.json')
+    arr = JSON.parse(IO.read(File.join(settings.root, 'data/trees.json')))
+    arr.map do |point|
+      { latlon: [point[1], point[0]] }
+    end.to_json
   end
 
   Mongoid.load!('mongoid.yml')

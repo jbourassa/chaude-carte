@@ -69,7 +69,7 @@ class Map
     console.log 1
     formated = data.map((point)->
       location: new google.maps.LatLng(point.latlon[0], point.latlon[1])
-      weight:   point.weight?
+      weight:   point.weight || 1
     )
 
     heatmap = new google.maps.visualization.HeatmapLayer(

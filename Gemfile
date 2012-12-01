@@ -6,10 +6,10 @@ gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem 'coffee-script'
 gem 'activesupport'
 gem 'mongoid'
-gem 'rake'
-gem 'pry'
 
 group :development do
+  gem 'shotgun'
+  gem 'pry'
   gem 'awesome_print'
   gem 'sinatra-reloader', :require => false
 end
