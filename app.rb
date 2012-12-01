@@ -44,7 +44,10 @@ class App < Sinatra::Base
 
   get '/quebec.json' do
     content_type :json
-    Property.all.map { |p| { latlon: p.latlon, weight: p.price } }.to_json
+    box = [[46.888355, -71.485497], [46.709736, -71.119411]]
+    Property.where(
+      latlon: {"$within" => {"$box" => box }}
+    ).map { |p| { latlon: p.latlon, weight: p.price } }.to_json
   end
 
   get '/trees.json' do
