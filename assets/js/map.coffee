@@ -1,14 +1,22 @@
 class Map
-  constructor:(id,heatPoints = [],center = [46.803283,-71.239596])->
+  constructor:(id,dataSetName,heatPoints = [],center = [46.803283,-71.239596])->
     @id     = id
     @$el    = $("#"+id)
     @zoomFlag = true
     @center = new google.maps.LatLng(center[0], center[1])
     this.initMap(heatPoints,center)
     this.initEvents()
+    this.initDataSet(dataSetName)
 
   initEvents: ->
     @$el.bind('map_center_changed')
+
+  initDataSet: (name)->
+    $.ajax
+      type: 'GET'
+      url: "/#{name}.json"
+      success: (data) =>
+        this.generateHeathMap(data)
 
   initMap: (heatPoints, center)->
     @map = new google.maps.Map(@$el[0],
@@ -45,11 +53,6 @@ class Map
     @map.mapTypes.set("styled", styledMap)
     @map.setMapTypeId("styled")
 
-    heatmap = new google.maps.visualization.HeatmapLayer(
-      data: heatPoints
-    )
-    heatmap.setMap(@map)
-
     google.maps.event.addListener(@map, 'center_changed', =>
       clearTimeout @timeout
       @timeout = setTimeout =>
@@ -61,6 +64,18 @@ class Map
       if @zoomFlag
         $(window).trigger "#{@id}_zoom_changed", [@map.getCenter(), @map.getZoom()]
     )
+
+  generateHeathMap: (data)->
+    console.log 1
+    formated = data.map((point)->
+      location: new google.maps.LatLng(point.latlon[0], point.latlon[1])
+      weight:   point.weight?
+    )
+
+    heatmap = new google.maps.visualization.HeatmapLayer(
+      data: formated
+    )
+    heatmap.setMap(@map)
 
   zoomOn: ->
     @zoomFlag = true

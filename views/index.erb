@@ -29,13 +29,6 @@
     </div>
     <div id="dragger"></div>
     <script>
-      window.baseMapHeatMapPoints = <%= prices %>.map(function(point) {
-        return { location: new google.maps.LatLng(point.latlon[0], point.latlon[1]),
-                 weight: point.price };
-      });
-      window.topMapHeatMapPoints = <%= trees %>.map(function(point) {
-        return { location: new google.maps.LatLng(point[1], point[0]) };
-      });
     </script>
     <%= js  :bodyjs %>
   </body>
