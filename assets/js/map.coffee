@@ -81,6 +81,7 @@ class Map
     )
 
   generateHeathMap: (data, gradient)->
+    @heatmap?.setMap(null)
     formated = data.map((point)->
       location: new google.maps.LatLng(point.latlon[0], point.latlon[1])
       weight:   point.weight || 1
@@ -91,7 +92,7 @@ class Map
       opacity: 0.9,
       gradient: gradient || @default_gradient
     )
-    heatmap.setMap(@map)
+    @heatmap.setMap(@map)
 
   zoomOn: ->
     @zoomFlag = true
