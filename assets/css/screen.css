@@ -39,7 +39,7 @@ header {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: -22px;
+  margin-left: -24px;
   width: 45px;
 }
 
@@ -125,4 +125,41 @@ header {
   float: right;
   margin-left: 10px;
   margin-top: 3px;
+}
+
+@media (max-width: 765px) {
+  .logo {
+    position: fixed;
+    bottom: 20px;
+    left: auto;
+    right: 6px;
+    top: auto;
+    margin: 0;
+  }
+  .control {
+    position: static;
+    display: inline-block;
+    margin: 0;
+    padding-top: 25px;
+    vertical-align: middle;
+    width: 49%;
+  }
+}
+
+@media (max-width: 665px) {
+  .logo-duproprio,
+  .control em {
+    display: none;
+  }
+
+  header {
+    height: 40px;
+  }
+
+  #dragger {
+    top: 40px;
+  }
+
+  .control { padding-top: 10px;}
+  .control.left { text-align: center; }
 }

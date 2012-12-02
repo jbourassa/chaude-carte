@@ -88,7 +88,7 @@ class Map
 
     heatmap = new google.maps.visualization.HeatmapLayer(
       data: formated,
-      opacity: 0.8,
+      opacity: 0.9,
       gradient: gradient || @default_gradient
     )
     heatmap.setMap(@map)
