@@ -1,19 +1,23 @@
 require 'bundler/setup'
 require 'sinatra/base'
+require 'sinatra/reloader'
 require 'sinatra/assetpack'
 require 'erb'
 require 'json'
 
+Bundler.require(:default)
 
 require_relative 'property'
 require_relative 'place'
-
-Bundler.require(:default)
 
 class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :run, false
   register Sinatra::AssetPack
+
+  configure :development do
+    register Sinatra::Reloader
+  end
 
   assets {
 
@@ -80,5 +84,3 @@ class App < Sinatra::Base
 
   run! if app_file == $0
 end
-
-
