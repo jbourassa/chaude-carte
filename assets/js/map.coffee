@@ -1,6 +1,7 @@
 class Map
   constructor:(id,dataSetName,heatPoints = [], gradient, center = [46.803283,-71.299596])->
     @id     = id
+    @name = dataSetName
     @$el    = $("#"+id)
     @zoomFlag = true
     @center = new google.maps.LatLng(center[0], center[1])
@@ -12,6 +13,7 @@ class Map
     @$el.bind('map_center_changed')
 
   initDataSet: (name, gradient)->
+    @name = name
     $.ajax
       type: 'GET'
       url: "/#{name}.json"
@@ -34,17 +36,6 @@ class Map
       streetViewControl: false
       overviewMapControl: false
     )
-
-    @default_gradient = [
-      'rgba(0, 237, 242, 0)',
-      '#00edf2',
-      '#00bfbb',
-      '#00a862',
-      '#009600',
-      '#edcd00',
-      '#e7de00',
-      '#f6af05'
-    ]
 
     mapStyles = [{
       featureType: "all"
@@ -90,9 +81,30 @@ class Map
     @heatmap = new google.maps.visualization.HeatmapLayer(
       data: formated,
       opacity: 0.9,
-      gradient: gradient || @default_gradient
+      gradient: this.getGradient()
     )
     @heatmap.setMap(@map)
+
+  getGradient: ->
+    console.log(@name)
+    if @name == 'trees'
+      [
+        'rgba(0, 125, 33, 0)',
+        '#007d21',
+        '#008f28',
+        '#00f91e'
+      ]
+    else
+      [
+        'rgba(0, 237, 242, 0)',
+        '#00edf2',
+        '#00bfbb',
+        '#00a862',
+        '#009600',
+        '#edcd00',
+        '#e7de00',
+        '#f6af05'
+      ]
 
   zoomOn: ->
     @zoomFlag = true
