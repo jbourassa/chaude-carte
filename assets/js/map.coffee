@@ -105,6 +105,12 @@ class Map
         '#e7de00',
         '#f6af05'
       ]
+    else if @name == 'bus_stops'
+      [
+        'rgba(0, 237, 242, 0)',
+        '#102a7d',
+        '#a2fa54'
+      ]
     else
       [
         'rgba(255, 3, 3, 0)',
