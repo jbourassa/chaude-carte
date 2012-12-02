@@ -6,6 +6,7 @@ require 'json'
 
 
 require_relative 'property'
+require_relative 'place'
 
 Bundler.require(:default)
 
@@ -72,15 +73,7 @@ class App < Sinatra::Base
 
   get '/restaurants.json' do
     content_type :json
-    @client = YellowApi.new(:apikey => "dygfhqympjmzeeysmwsknbem", :sandbox_enabled => true)
-    @result = query_yellow('restaurant', 1)
-    if @result.listings
-      @result.listings.compact.map do |l|
-        { latlon: [l['geo_code']['latitude'],l['geo_code']['longitude']] } if l['geo_code']
-      end.compact.to_json
-    else
-      @result.to_json
-    end
+    Place.all.to_json
   end
 
   Mongoid.load!('mongoid.yml')
