@@ -1,5 +1,5 @@
 class Map
-  constructor:(id,dataSetName,heatPoints = [], gradient, center = [46.803283,-71.239596])->
+  constructor:(id,dataSetName,heatPoints = [], gradient, center = [46.803283,-71.299596])->
     @id     = id
     @$el    = $("#"+id)
     @zoomFlag = true
@@ -21,7 +21,7 @@ class Map
   initMap: (heatPoints, center)->
     @map = new google.maps.Map(@$el[0],
       center:    @center
-      zoom:      14
+      zoom:      13
       mapTypeId: google.maps.MapTypeId.ROADMAP
       panControl: false
       zoomControl: true
