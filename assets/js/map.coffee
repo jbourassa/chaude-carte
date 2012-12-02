@@ -94,7 +94,7 @@ class Map
         '#008f28',
         '#00f91e'
       ]
-    else
+    else if @name == 'quebec'
       [
         'rgba(0, 237, 242, 0)',
         '#00edf2',
@@ -104,6 +104,15 @@ class Map
         '#edcd00',
         '#e7de00',
         '#f6af05'
+      ]
+    else
+      [
+        'rgba(255, 3, 3, 0)',
+        '#ff0303',
+        '#bb0641',
+        '#cd0d89',
+        '#ff9700',
+        '#f7cb00'
       ]
 
   zoomOn: ->
