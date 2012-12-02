@@ -1,0 +1,3 @@
+[submodule "vendor/yellow_api"]
+	path = vendor/yellow_api
+	url = git://github.com/plehoux/yellow_api.git

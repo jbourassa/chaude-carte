@@ -1,6 +1,5 @@
-GIT
-  remote: git@github.com:plehoux/yellow_api.git
-  revision: f0a72fecb6be46623369def4dbca78a50280cfe8
+PATH
+  remote: vendor/yellow_api
   specs:
     yellow_api (0.0.2)
       activesupport (~> 3.2.3)

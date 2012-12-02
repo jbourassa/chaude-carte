@@ -3,7 +3,11 @@ require_relative "app.rb"
 require_relative "property.rb"
 
 
-KEYS = YAML::load(File.open('keys.yml'))
+KEYS = {
+  appid: ENV['DP_APPID'],
+  username: ENV['DP_USERKEY'],
+  userkey: ENV['DP_USERNAME'],
+}
 URL = 'http://api-beta.duproprio.com'
 
 def call(call, params={})

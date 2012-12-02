@@ -3,7 +3,7 @@ require_relative "app.rb"
 require_relative "place.rb"
 require 'awesome_print'
 
-@client = YellowApi.new(:apikey => "dygfhqympjmzeeysmwsknbem", :sandbox_enabled => true)
+@client = YellowApi.new(apikey: ENV['YW_KEY'], sandbox_enabled: ENV['YW_SANDBOX'] == '1')
 def call(query, page)
   results = @client.find_business(query, "Quebec Quebec", { :pgLen => 100, :pg => page })
   results.listings.compact.select(&:geo_code)

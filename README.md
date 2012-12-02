@@ -4,17 +4,23 @@
 
 ## Setup
 
+    cp .env.tmpl .env
+    # Edit your .env
+    foreman run build_index.rb
     # Load data using the super secret script
-    cp mongoid.yml.tmpl mongoid.yml
-    cp keys.yml.tmpl keys.yml
-    ruby build_index.rb
 
 ## Running
 
 **App**
 
-    ruby app.rb
+    foreman start
 
 **Scraper**
 
-    ruby scraper.rb
+    # Valid files are scrape.rb, scrape_yellow.rb, time_scrape.rb
+    forman run ruby SCRAPE_FILE HERE
+
+
+## Disclammer
+
+12-hours-ish type-of-code. Read at your own risk.
