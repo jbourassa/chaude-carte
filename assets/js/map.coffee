@@ -87,7 +87,7 @@ class Map
       weight:   point.weight || 1
     )
 
-    heatmap = new google.maps.visualization.HeatmapLayer(
+    @heatmap = new google.maps.visualization.HeatmapLayer(
       data: formated,
       opacity: 0.9,
       gradient: gradient || @default_gradient
