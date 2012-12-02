@@ -61,6 +61,11 @@ class App < Sinatra::Base
     end.to_json
   end
 
+  get '/bus_stops.json' do
+    content_type :json
+    send_file File.join(settings.root, 'data/bus_stops.json')
+  end
+
   def query_yellow(search, page)
     @client.find_business(search, "Quebec Quebec", { :pgLen => 100, :pg => page })
   end
