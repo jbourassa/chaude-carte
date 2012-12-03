@@ -44,18 +44,17 @@ class App < Sinatra::Base
 
   # Home
   get '/' do
-    erb :index, locals: {
-      prices: Property.all.to_json,
-      trees: IO.read(File.join(settings.root, 'data/trees.json'))
-    }
+    erb :index
   end
 
   get '/quebec.json' do
     content_type :json
-    box = [[46.888355, -71.485497], [46.709736, -71.119411]]
-    Property.where(
-      latlon: {"$within" => {"$box" => box }}
-    ).map { |p| { latlon: p.latlon, weight: p.price } }.to_json
+    send_file File.join(settings.root, 'data/quebec.json')
+    #content_type :json
+    #box = [[46.888355, -71.485497], [46.709736, -71.119411]]
+    #Property.where(
+      #latlon: {"$within" => {"$box" => box }}
+    #).map { |p| { latlon: p.latlon, weight: p.price } }.to_json
   end
 
   get '/trees.json' do
@@ -77,7 +76,9 @@ class App < Sinatra::Base
 
   get '/restaurants.json' do
     content_type :json
-    Place.all.to_json
+    send_file File.join(settings.root, 'data/restaurants.json')
+    #content_type :json
+    #Place.all.to_json
   end
 
   Mongoid.load!('mongoid.yml')
