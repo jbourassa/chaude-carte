@@ -86,7 +86,6 @@ class Map
     @heatmap.setMap(@map)
 
   getGradient: ->
-    console.log(@name)
     if @name == 'trees'
       [
         'rgba(0, 125, 33, 0)',
