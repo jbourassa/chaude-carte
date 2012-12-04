@@ -142,7 +142,7 @@ header {
 
 #authors li {
   list-style-type:none;
-  color:#FF26B0;
+  color:#ff26b0;
   font-size:14px;
   padding-left: 5px;
 }
@@ -157,6 +157,11 @@ header {
   margin-top:5px;
   font-size:12px;
   padding-left: 0px;
+}
+
+#authors a {
+  color:#ff26b0;
+  text-decoration: none;
 }
 
 @media (max-width: 765px) {
